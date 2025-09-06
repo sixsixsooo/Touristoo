@@ -12,7 +12,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store";
 import { GameSettings } from "@/types";
-import { storageService } from "@/services/storage";
+import storageService from "@/services/storage";
 
 const SettingsScreen: React.FC = () => {
   const dispatch = useDispatch();

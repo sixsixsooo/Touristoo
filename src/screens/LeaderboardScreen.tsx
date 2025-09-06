@@ -13,7 +13,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "@/store";
 import { LeaderboardEntry } from "@/types";
 import { apiService } from "@/services/api";
-import { storageService } from "@/services/storage";
+import storageService from "@/services/storage";
 
 const LeaderboardScreen: React.FC = () => {
   const dispatch = useDispatch();
@@ -312,9 +312,6 @@ const styles = StyleSheet.create({
   },
   topRankText: {
     fontSize: 24,
-  },
-  currentPlayerRankText: {
-    color: "#34C759",
   },
   playerInfo: {
     flex: 1,

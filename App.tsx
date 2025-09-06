@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { StatusBar } from "expo-status-bar";
 import { store } from "@/store";
 import AppNavigator from "@/navigation/AppNavigator";
-import { storageService } from "@/services/storage";
+import storageService from "@/services/storage";
 import { adsService } from "@/services/adsService";
 
 // Конфигурация рекламы

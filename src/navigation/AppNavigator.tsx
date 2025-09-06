@@ -28,7 +28,7 @@ const TabNavigator = () => {
           if (route.name === "Home") {
             iconName = focused ? "home" : "home-outline";
           } else if (route.name === "Shop") {
-            iconName = focused ? "storefront" : "storefront-outline";
+            iconName = focused ? "basket" : "basket-outline";
           } else if (route.name === "Leaderboard") {
             iconName = focused ? "trophy" : "trophy-outline";
           } else if (route.name === "Settings") {

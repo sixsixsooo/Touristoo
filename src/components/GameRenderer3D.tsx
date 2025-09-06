@@ -141,8 +141,8 @@ const GameRenderer3D = forwardRef<GameRenderer3DRef, GameRenderer3DProps>(
       directionalLight.shadow.camera.bottom = -20;
       scene.add(directionalLight);
 
-      // Create player (character)
-      const playerGeometry = new THREE.CapsuleGeometry(0.5, 1.5, 4, 8);
+      // Create player (character) - используем BoxGeometry вместо CapsuleGeometry для совместимости
+      const playerGeometry = new THREE.BoxGeometry(0.8, 1.5, 0.8);
       const playerMaterial = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
       const player = new THREE.Mesh(playerGeometry, playerMaterial);
       player.position.set(0, 1, 0);

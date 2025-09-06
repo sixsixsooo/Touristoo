@@ -4,6 +4,9 @@ export type RootStackParamList = {
   Main: undefined;
   Game: undefined;
   Profile: undefined;
+  Shop: undefined;
+  Leaderboard: undefined;
+  Settings: undefined;
 };
 
 export type TabParamList = {

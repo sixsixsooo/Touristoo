@@ -98,6 +98,7 @@ export interface ApiResponse<T> {
 export interface LoginRequest {
   email?: string;
   password?: string;
+  name?: string;
   yandexId?: string;
   isGuest?: boolean;
 }
