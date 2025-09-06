@@ -30,19 +30,19 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
 
-  # VK Cloud (РОССИЙСКИЙ - БЕСПЛАТНО)
-  vk_cloud: ^1.0.0
-  vk_cloud_functions: ^1.0.0
-  vk_cloud_storage: ^1.0.0
+  # VK Cloud (РОССИЙСКИЙ - БЕСПЛАТНО) - заглушки
+  # vk_cloud: ^1.0.0
+  # vk_cloud_functions: ^1.0.0
+  # vk_cloud_storage: ^1.0.0
 
-  # Yandex Ads (РОССИЙСКИЙ - УЖЕ НАСТРОЕН)
-  yandex_mobile_ads: ^4.4.0
+  # Yandex Ads (РОССИЙСКИЙ - УЖЕ НАСТРОЕН) - заглушка
+  # yandex_mobile_ads: ^4.4.0
 
-  # VK Ads (РОССИЙСКИЙ - БЕСПЛАТНО)
-  vk_ads: ^1.0.0
+  # VK Ads (РОССИЙСКИЙ - БЕСПЛАТНО) - заглушка
+  # vk_ads: ^1.0.0
 
-  # In-App Purchases (30% комиссия)
-  in_app_purchase: ^3.1.11
+  # In-App Purchases (30% комиссия) - заглушка
+  # in_app_purchase: ^3.1.11
 
   # UI Components
   cupertino_icons: ^1.0.6
@@ -66,9 +66,9 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  assets:
-    - assets/images/
-    - assets/models/
-    - assets/sounds/
-    - assets/animations/
-    - assets/ui/
+  # assets:
+    # - assets/images/
+    # - assets/models/
+    # - assets/sounds/
+    # - assets/animations/
+    # - assets/ui/
