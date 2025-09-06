@@ -19,7 +19,7 @@ import {
   updateDistance,
 } from "@/store/slices/gameSlice";
 import { adsService } from "@/services/adsService";
-import GameRenderer3D from "@/components/GameRenderer3D";
+import GameRenderer2D, { GameRenderer2DRef } from "@/components/GameRenderer2D";
 
 type GameScreenNavigationProp = StackNavigationProp<RootStackParamList, "Game">;
 
@@ -32,7 +32,7 @@ const GameScreen: React.FC<Props> = ({ navigation }) => {
   const { isRunning, isPaused, score, distance, playerHealth } = useSelector(
     (state: RootState) => state.game
   );
-  const gameRendererRef = useRef<any>(null);
+  const gameRendererRef = useRef<GameRenderer2DRef>(null);
   const [gameStarted, setGameStarted] = useState(false);
 
   useEffect(() => {
@@ -134,39 +134,8 @@ const GameScreen: React.FC<Props> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* Игровой интерфейс */}
-      <View style={styles.ui}>
-        {/* Верхняя панель */}
-        <View style={styles.topPanel}>
-          <View style={styles.scoreContainer}>
-            <Text style={styles.scoreText}>{score.toLocaleString()}</Text>
-            <Text style={styles.distanceText}>{distance.toFixed(0)}м</Text>
-          </View>
-
-          <View style={styles.healthContainer}>
-            <View style={styles.healthBar}>
-              <View
-                style={[
-                  styles.healthFill,
-                  { width: `${(playerHealth / 100) * 100}%` },
-                ]}
-              />
-            </View>
-            <Text style={styles.healthText}>{playerHealth}</Text>
-          </View>
-        </View>
-
-        {/* Кнопка паузы */}
-        <TouchableOpacity
-          style={styles.pauseButton}
-          onPress={isPaused ? handleResume : handlePause}
-        >
-          <Text style={styles.pauseButtonText}>{isPaused ? "▶️" : "⏸️"}</Text>
-        </TouchableOpacity>
-      </View>
-
-      {/* 3D игровой движок */}
-      <GameRenderer3D
+      {/* 2D игровой движок */}
+      <GameRenderer2D
         ref={gameRendererRef}
         onScoreUpdate={handleScoreUpdate}
         onDistanceUpdate={handleDistanceUpdate}
@@ -181,7 +150,7 @@ const GameScreen: React.FC<Props> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#000",
+    backgroundColor: "transparent",
   },
   message: {
     color: "#fff",
