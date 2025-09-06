@@ -1,78 +1,65 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
-
+import 'package:provider/provider.dart';
+import 'core/providers/game_provider.dart';
+import 'core/providers/auth_provider.dart';
 import 'core/config/app_config.dart';
-import 'core/services/storage_service.dart';
-import 'core/services/audio_service.dart';
-import 'core/services/analytics_service.dart';
-import 'core/navigation/app_router.dart';
-import 'core/theme/app_theme.dart';
-import 'core/providers/game_providers.dart';
+import 'core/services/vk_cloud_service.dart';
+import 'core/services/data_service.dart';
+import 'core/services/yandex_ads_service.dart';
+import 'features/home/presentation/pages/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   
-  // Initialize Firebase
-  await Firebase.initializeApp();
+  // Инициализируем сервисы
+  await VKCloudService.instance.initialize();
+  await DataService.instance.initialize();
+  await YandexAdsService.instance.initialize();
   
-  // Initialize Hive
-  await Hive.initFlutter();
-  await StorageService.initialize();
+  // Инициализируем провайдеры
+  final gameProvider = GameProvider();
+  final authProvider = AuthProvider();
   
-  // Initialize Audio Service
-  await AudioService.initialize();
+  await gameProvider.initialize();
+  await authProvider.initialize();
   
-  // Initialize Analytics
-  await AnalyticsService.initialize();
-  
-  // Set preferred orientations
-  await SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]);
-  
-  // Set system UI overlay style
-  SystemChrome.setSystemUIOverlayStyle(
-    const SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.light,
-      systemNavigationBarColor: Colors.transparent,
-      systemNavigationBarIconBrightness: Brightness.light,
-    ),
-  );
-  
-  runApp(
-    ProviderScope(
-      child: TouristooApp(),
-    ),
-  );
+  runApp(TouristooApp(
+    gameProvider: gameProvider,
+    authProvider: authProvider,
+  ));
 }
 
-class TouristooApp extends ConsumerWidget {
+class TouristooApp extends StatelessWidget {
+  final GameProvider gameProvider;
+  final AuthProvider authProvider;
+
+  const TouristooApp({
+    super.key,
+    required this.gameProvider,
+    required this.authProvider,
+  });
+
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
-    final router = ref.watch(appRouterProvider);
-    final themeMode = ref.watch(themeModeProvider);
-    
-    return MaterialApp.router(
-      title: 'Touristoo Runner',
-      debugShowCheckedModeBanner: false,
-      theme: AppTheme.lightTheme,
-      darkTheme: AppTheme.darkTheme,
-      themeMode: themeMode,
-      routerConfig: router,
-      builder: (context, child) {
-        return MediaQuery(
-          data: MediaQuery.of(context).copyWith(
-            textScaler: TextScaler.linear(1.0), // Disable text scaling
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: gameProvider),
+        ChangeNotifierProvider.value(value: authProvider),
+      ],
+      child: MaterialApp(
+        title: AppConfig.appName,
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          fontFamily: 'Roboto',
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color(0xFF1E3C72),
+            brightness: Brightness.light,
           ),
-          child: child!,
-        );
-      },
+        ),
+        home: const HomeScreen(),
+        debugShowCheckedModeBanner: false,
+      ),
     );
   }
 }

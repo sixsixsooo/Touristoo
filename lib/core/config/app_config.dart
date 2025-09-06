@@ -4,19 +4,44 @@ class AppConfig {
   static const String appVersion = '1.0.0';
   static const String buildNumber = '1';
   
-  // API Configuration
-  static const String baseUrl = 'https://api.touristoo.run';
-  static const String apiVersion = 'v1';
-  static const Duration apiTimeout = Duration(seconds: 30);
+  // VK Cloud Configuration (РОССИЙСКИЙ - БЕСПЛАТНО)
+  static const String vkCloudProjectId = 'touristoo-runner';
+  static const String vkCloudApiKey = 'YOUR_VK_CLOUD_API_KEY';
+  static const String vkCloudRegion = 'ru-1';
   
-  // Yandex Cloud Configuration
-  static const String yandexCloudApiKey = 'YOUR_YANDEX_CLOUD_API_KEY';
-  static const String yandexCloudFunctionUrl = 'https://functions.yandexcloud.net';
+  // VK Cloud Functions (БЕСПЛАТНО - 1 млн вызовов)
+  static const String vkCloudFunctionUrl = 'https://functions.vkcs.cloud';
+  static const String vkCloudFunctionId = 'YOUR_FUNCTION_ID';
   
-  // YooKassa Configuration
-  static const String yookassaShopId = 'YOUR_YOOKASSA_SHOP_ID';
-  static const String yookassaSecretKey = 'YOUR_YOOKASSA_SECRET_KEY';
-  static const String yookassaApiUrl = 'https://api.yookassa.ru/v3';
+  // VK Cloud PostgreSQL (БЕСПЛАТНО - 1 ГБ)
+  static const String vkCloudDatabaseUrl = 'postgresql://user:pass@host:port/db';
+  static const String vkCloudDatabaseHost = 'YOUR_DB_HOST';
+  static const int vkCloudDatabasePort = 5432;
+  static const String vkCloudDatabaseName = 'touristoo';
+  static const String vkCloudDatabaseUser = 'touristoo_user';
+  static const String vkCloudDatabasePassword = 'YOUR_DB_PASSWORD';
+  
+  // VK Cloud Object Storage (БЕСПЛАТНО - 1 ГБ)
+  static const String vkCloudStorageUrl = 'https://storage.vkcs.cloud';
+  static const String vkCloudStorageBucket = 'touristoo-assets';
+  static const String vkCloudStorageAccessKey = 'YOUR_STORAGE_ACCESS_KEY';
+  static const String vkCloudStorageSecretKey = 'YOUR_STORAGE_SECRET_KEY';
+  
+  // Yandex Ads Configuration (РОССИЙСКИЙ - УЖЕ НАСТРОЕН)
+  static const String yandexAdsAppId = 'YOUR_YANDEX_ADS_APP_ID';
+  static const String yandexAdsBannerId = 'YOUR_YANDEX_ADS_BANNER_ID';
+  static const String yandexAdsInterstitialId = 'YOUR_YANDEX_ADS_INTERSTITIAL_ID';
+  static const String yandexAdsRewardedId = 'YOUR_YANDEX_ADS_REWARDED_ID';
+  
+  // VK Ads Configuration (РОССИЙСКИЙ - БЕСПЛАТНО)
+  static const String vkAdsAppId = 'YOUR_VK_ADS_APP_ID';
+  static const String vkAdsBannerId = 'YOUR_VK_ADS_BANNER_ID';
+  static const String vkAdsInterstitialId = 'YOUR_VK_ADS_INTERSTITIAL_ID';
+  
+  // In-App Purchases (30% комиссия Google/Apple)
+  static const String iapCoinPack1 = 'coin_pack_100';
+  static const String iapCoinPack2 = 'coin_pack_500';
+  static const String iapCoinPack3 = 'coin_pack_1000';
   
   // RuStore Configuration
   static const String russtoreAppId = 'ru.touristoo.runner';
