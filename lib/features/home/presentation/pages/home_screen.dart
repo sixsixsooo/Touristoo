@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/providers/game_provider.dart';
 import '../../../../core/providers/auth_provider.dart';
+import '../../../game/presentation/pages/game_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -217,21 +218,9 @@ class HomeScreen extends StatelessWidget {
   }
 
   void _showGameScreen(BuildContext context) {
-    showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (context) => AlertDialog(
-        title: const Text('🎮 Игра'),
-        content: const Text('Игровой экран будет здесь!\n\nПока что это демо-версия.'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pop();
-              Provider.of<GameProvider>(context, listen: false).endGame();
-            },
-            child: const Text('Закрыть'),
-          ),
-        ],
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => const GameScreen(),
       ),
     );
   }

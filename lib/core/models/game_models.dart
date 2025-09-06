@@ -11,6 +11,12 @@ class GameState {
   final int currentLevel;
   final int playerHealth;
   final int maxHealth;
+  final int currentLane; // 0 = левая, 1 = центр, 2 = правая
+  final double gameSpeed;
+  final List<PowerUp> collectedPowerUps;
+  final bool isBossFight;
+  final int bossHealth;
+  final int maxBossHealth;
 
   const GameState({
     required this.score,
@@ -21,6 +27,12 @@ class GameState {
     required this.currentLevel,
     required this.playerHealth,
     required this.maxHealth,
+    required this.currentLane,
+    required this.gameSpeed,
+    required this.collectedPowerUps,
+    required this.isBossFight,
+    required this.bossHealth,
+    required this.maxBossHealth,
   });
 
   factory GameState.initial() => const GameState(
@@ -32,6 +44,12 @@ class GameState {
     currentLevel: 1,
     playerHealth: 100,
     maxHealth: 100,
+    currentLane: 1, // Начинаем в центральной дорожке
+    gameSpeed: 5.0,
+    collectedPowerUps: [],
+    isBossFight: false,
+    bossHealth: 0,
+    maxBossHealth: 0,
   );
 
   GameState copyWith({
@@ -43,6 +61,12 @@ class GameState {
     int? currentLevel,
     int? playerHealth,
     int? maxHealth,
+    int? currentLane,
+    double? gameSpeed,
+    List<PowerUp>? collectedPowerUps,
+    bool? isBossFight,
+    int? bossHealth,
+    int? maxBossHealth,
   }) {
     return GameState(
       score: score ?? this.score,
@@ -53,6 +77,12 @@ class GameState {
       currentLevel: currentLevel ?? this.currentLevel,
       playerHealth: playerHealth ?? this.playerHealth,
       maxHealth: maxHealth ?? this.maxHealth,
+      currentLane: currentLane ?? this.currentLane,
+      gameSpeed: gameSpeed ?? this.gameSpeed,
+      collectedPowerUps: collectedPowerUps ?? this.collectedPowerUps,
+      isBossFight: isBossFight ?? this.isBossFight,
+      bossHealth: bossHealth ?? this.bossHealth,
+      maxBossHealth: maxBossHealth ?? this.maxBossHealth,
     );
   }
 }
@@ -168,17 +198,27 @@ class Coin {
 }
 
 // PowerUp
-enum PowerUpType { health, speed, shield }
+enum PowerUpType { 
+  health,      // Восстановление здоровья
+  speed,       // Увеличение скорости
+  shield,      // Щит от урона
+  fireball,    // Огненный шар для атаки босса
+  lightning,   // Молния для атаки босса
+  ice,         // Лед для замедления босса
+  coin         // Монета
+}
 
 class PowerUp {
   final Vector3 position;
   final PowerUpType type;
   final double value;
+  final int lane; // На какой дорожке находится (0, 1, 2)
 
   const PowerUp({
     required this.position,
     required this.type,
     required this.value,
+    required this.lane,
   });
 }
 

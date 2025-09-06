@@ -67,8 +67,8 @@ flutter:
   uses-material-design: true
 
   # assets:
-    # - assets/images/
-    # - assets/models/
-    # - assets/sounds/
-    # - assets/animations/
-    # - assets/ui/
+  # - assets/images/
+  # - assets/models/
+  # - assets/sounds/
+  # - assets/animations/
+  # - assets/ui/

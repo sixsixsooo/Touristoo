@@ -7,13 +7,9 @@ class GameProvider extends ChangeNotifier {
   GameState get gameState => _gameState;
 
   void startGame() {
-    _gameState = _gameState.copyWith(
+    _gameState = GameState.initial().copyWith(
       isRunning: true,
       isPaused: false,
-      score: 0,
-      distance: 0.0,
-      coins: 0,
-      playerHealth: 100,
     );
     notifyListeners();
   }
@@ -71,6 +67,62 @@ class GameProvider extends ChangeNotifier {
 
   void levelUp() {
     _gameState = _gameState.copyWith(
+      currentLevel: _gameState.currentLevel + 1,
+    );
+    notifyListeners();
+  }
+
+  void moveToLane(int lane) {
+    if (lane >= 0 && lane <= 2) {
+      _gameState = _gameState.copyWith(currentLane: lane);
+      notifyListeners();
+    }
+  }
+
+  void increaseSpeed() {
+    _gameState = _gameState.copyWith(
+      gameSpeed: (_gameState.gameSpeed + 1.0).clamp(5.0, 15.0),
+    );
+    notifyListeners();
+  }
+
+  void addShield() {
+    // Заглушка для щита - можно добавить логику защиты
+    addScore(50);
+  }
+
+  void addPowerUp(PowerUp powerUp) {
+    final newPowerUps = List<PowerUp>.from(_gameState.collectedPowerUps);
+    newPowerUps.add(powerUp);
+    _gameState = _gameState.copyWith(collectedPowerUps: newPowerUps);
+    notifyListeners();
+  }
+
+  void startBossFight() {
+    _gameState = _gameState.copyWith(
+      isBossFight: true,
+      bossHealth: 200,
+      maxBossHealth: 200,
+    );
+    notifyListeners();
+  }
+
+  void attackBoss(int damage) {
+    if (_gameState.isBossFight) {
+      final newBossHealth = (_gameState.bossHealth - damage).clamp(0, _gameState.maxBossHealth);
+      _gameState = _gameState.copyWith(bossHealth: newBossHealth);
+      
+      if (newBossHealth <= 0) {
+        _winBossFight();
+      }
+      notifyListeners();
+    }
+  }
+
+  void _winBossFight() {
+    _gameState = _gameState.copyWith(
+      isBossFight: false,
+      score: _gameState.score + 1000,
       currentLevel: _gameState.currentLevel + 1,
     );
     notifyListeners();
