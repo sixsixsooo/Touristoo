@@ -10,10 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # 3D Graphics (БЕСПЛАТНО)
-  flutter_gl: ^0.0.2
+  # Game Engine (БЕСПЛАТНО)
+  flame: ^1.15.0
+  flame_audio: ^2.0.0
   vector_math: ^2.1.4
-  model_viewer_plus: ^1.7.0
 
   # State Management
   provider: ^6.1.1
@@ -66,9 +66,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  # assets:
-  # - assets/images/
-  # - assets/models/
-  # - assets/sounds/
-  # - assets/animations/
-  # - assets/ui/
+  assets:
+    - assets/images/characters/
+    - assets/images/enemies/
+    - assets/images/ui/
+    - assets/images/backgrounds/
+    - assets/sounds/
+    - assets/animations/

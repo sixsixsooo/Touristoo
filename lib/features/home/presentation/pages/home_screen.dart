@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/providers/game_provider.dart';
 import '../../../../core/providers/auth_provider.dart';
-import '../../../game/presentation/pages/game_screen.dart';
+import '../../../game/presentation/pages/game_screen_real_stool.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -220,7 +220,7 @@ class HomeScreen extends StatelessWidget {
   void _showGameScreen(BuildContext context) {
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => const GameScreen(),
+        builder: (context) => const GameScreenRealStool(),
       ),
     );
   }

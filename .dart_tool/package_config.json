@@ -2,12 +2,6 @@
   "configVersion": 2,
   "packages": [
     {
-      "name": "android_intent_plus",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/android_intent_plus-5.3.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.1"
-    },
-    {
       "name": "archive",
       "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/archive-3.6.1",
       "packageUri": "lib/",
@@ -152,6 +146,18 @@
       "languageVersion": "3.1"
     },
     {
+      "name": "flame",
+      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/flame-1.32.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.8"
+    },
+    {
+      "name": "flame_audio",
+      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/flame_audio-2.10.1",
+      "packageUri": "lib/",
+      "languageVersion": "3.0"
+    },
+    {
       "name": "flutter",
       "rootUri": "file:///C:/flutter/flutter/packages/flutter",
       "packageUri": "lib/",
@@ -162,36 +168,6 @@
       "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_cache_manager-3.4.1",
       "packageUri": "lib/",
       "languageVersion": "3.0"
-    },
-    {
-      "name": "flutter_gl",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_gl-0.0.21",
-      "packageUri": "lib/",
-      "languageVersion": "2.17"
-    },
-    {
-      "name": "flutter_gl_macos",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_gl_macos-0.0.5",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "flutter_gl_platform_interface",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_gl_platform_interface-0.0.4",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "flutter_gl_web",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_gl_web-0.0.5",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
-      "name": "flutter_gl_windows",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_gl_windows-0.0.4",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
     },
     {
       "name": "flutter_lints",
@@ -314,12 +290,6 @@
       "languageVersion": "3.2"
     },
     {
-      "name": "model_viewer_plus",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/model_viewer_plus-1.9.3",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
-    },
-    {
       "name": "nested",
       "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/nested-1.0.0",
       "packageUri": "lib/",
@@ -330,6 +300,12 @@
       "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/octo_image-2.1.0",
       "packageUri": "lib/",
       "languageVersion": "3.0"
+    },
+    {
+      "name": "ordered_set",
+      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/ordered_set-8.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.6"
     },
     {
       "name": "path",
@@ -542,54 +518,6 @@
       "languageVersion": "3.5"
     },
     {
-      "name": "url_launcher",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher-6.3.2",
-      "packageUri": "lib/",
-      "languageVersion": "3.6"
-    },
-    {
-      "name": "url_launcher_android",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_android-6.3.18",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "url_launcher_ios",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_ios-6.3.4",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "url_launcher_linux",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_linux-3.2.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.3"
-    },
-    {
-      "name": "url_launcher_macos",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_macos-3.2.3",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "url_launcher_platform_interface",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_platform_interface-2.3.2",
-      "packageUri": "lib/",
-      "languageVersion": "3.1"
-    },
-    {
-      "name": "url_launcher_web",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_web-2.4.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.6"
-    },
-    {
-      "name": "url_launcher_windows",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/url_launcher_windows-3.1.4",
-      "packageUri": "lib/",
-      "languageVersion": "3.4"
-    },
-    {
       "name": "uuid",
       "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/uuid-4.5.1",
       "packageUri": "lib/",
@@ -612,30 +540,6 @@
       "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/web-1.1.1",
       "packageUri": "lib/",
       "languageVersion": "3.4"
-    },
-    {
-      "name": "webview_flutter",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter-4.13.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.6"
-    },
-    {
-      "name": "webview_flutter_android",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_android-4.10.1",
-      "packageUri": "lib/",
-      "languageVersion": "3.7"
-    },
-    {
-      "name": "webview_flutter_platform_interface",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_platform_interface-2.14.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.6"
-    },
-    {
-      "name": "webview_flutter_wkwebview",
-      "rootUri": "file:///C:/Users/yoshe/AppData/Local/Pub/Cache/hosted/pub.dev/webview_flutter_wkwebview-3.23.0",
-      "packageUri": "lib/",
-      "languageVersion": "3.6"
     },
     {
       "name": "xdg_directories",
