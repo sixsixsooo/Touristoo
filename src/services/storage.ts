@@ -6,7 +6,7 @@ class StorageService {
 
   async initialize(): Promise<void> {
     try {
-      this.db = SQLite.openDatabase("touristoo_runner.db");
+      this.db = await SQLite.openDatabaseAsync("touristoo_runner.db");
       await this.createTables();
     } catch (error) {
       console.error("Failed to initialize database:", error);
@@ -31,7 +31,7 @@ class StorageService {
       );
     `;
 
-    await this.db.execAsync([{ sql: createTablesSQL, args: [] }], false);
+    await this.db.execAsync(createTablesSQL);
   }
 
   // Game State Management
@@ -39,24 +39,19 @@ class StorageService {
     if (!this.db) return;
 
     try {
-      await this.db.execAsync(
-        [
-          {
-            sql: `INSERT OR REPLACE INTO local_progress 
+      await this.db.runAsync(
+        `INSERT OR REPLACE INTO local_progress 
          (player_id, score, distance, coins, level, health, last_sync_at, updated_at)
          VALUES (?, ?, ?, ?, ?, ?, ?, strftime('%s', 'now'))`,
-            args: [
-              playerId,
-              gameState.score,
-              gameState.distance,
-              gameState.coins,
-              gameState.currentLevel,
-              gameState.playerHealth,
-              Date.now(),
-            ],
-          },
-        ],
-        false
+        [
+          playerId,
+          gameState.score,
+          gameState.distance,
+          gameState.coins,
+          gameState.currentLevel,
+          gameState.playerHealth,
+          Date.now(),
+        ]
       );
     } catch (error) {
       console.error("Failed to save game state:", error);
@@ -67,15 +62,10 @@ class StorageService {
     if (!this.db) return null;
 
     try {
-      const results = await this.db.execAsync(
-        [
-          {
-            sql: `SELECT score, distance, coins, level, health FROM local_progress 
+      const results = await this.db.getAllAsync(
+        `SELECT score, distance, coins, level, health FROM local_progress 
          WHERE player_id = ? ORDER BY updated_at DESC LIMIT 1`,
-            args: [playerId],
-          },
-        ],
-        false
+        [playerId]
       );
 
       if (results && results.length > 0) {
@@ -158,10 +148,7 @@ class StorageService {
   async clearAllData(): Promise<void> {
     try {
       if (this.db) {
-        await this.db.execAsync(
-          [{ sql: "DELETE FROM local_progress", args: [] }],
-          false
-        );
+        await this.db.execAsync("DELETE FROM local_progress");
       }
     } catch (error) {
       console.error("Failed to clear all data:", error);

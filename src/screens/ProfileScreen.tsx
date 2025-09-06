@@ -67,9 +67,24 @@ const ProfileScreen: React.FC = () => {
       });
 
       if (response.success && response.data) {
+        // Создаем объект игрока из ответа API
+        const player = {
+          id: response.data.user.id,
+          name: response.data.user.username,
+          email: response.data.user.email,
+          avatar: undefined,
+          totalScore: 0,
+          level: 1,
+          coins: 0,
+          skins: ["1"],
+          currentSkin: "1",
+          isGuest: false,
+          lastSyncAt: undefined,
+        };
+
         dispatch({
           type: "player/loginSuccess",
-          payload: response.data.player,
+          payload: player,
         });
         Alert.alert("Успех", "Вход выполнен успешно");
         setEmail("");
@@ -101,9 +116,24 @@ const ProfileScreen: React.FC = () => {
       });
 
       if (response.success && response.data) {
+        // Создаем объект игрока из ответа API
+        const player = {
+          id: response.data.user.id,
+          name: response.data.user.username,
+          email: response.data.user.email,
+          avatar: undefined,
+          totalScore: 0,
+          level: 1,
+          coins: 0,
+          skins: ["1"],
+          currentSkin: "1",
+          isGuest: false,
+          lastSyncAt: undefined,
+        };
+
         dispatch({
           type: "player/loginSuccess",
-          payload: response.data.player,
+          payload: player,
         });
         Alert.alert("Успех", "Регистрация выполнена успешно");
         setEmail("");

@@ -120,8 +120,8 @@ const GameRenderer3D = forwardRef<GameRenderer3DRef, GameRenderer3DProps>(
         0.1,
         1000
       );
-      camera.position.set(0, 8, 15);
-      camera.lookAt(0, 0, 0);
+      camera.position.set(0, 3, 5);
+      camera.lookAt(0, 0, -5);
       cameraRef.current = camera;
 
       // Create lighting
@@ -141,46 +141,66 @@ const GameRenderer3D = forwardRef<GameRenderer3DRef, GameRenderer3DProps>(
       directionalLight.shadow.camera.bottom = -20;
       scene.add(directionalLight);
 
-      // Create player (character) - используем BoxGeometry вместо CapsuleGeometry для совместимости
-      const playerGeometry = new THREE.CapsuleGeometry(0.5, 1.5, 4, 8);
-      const playerMaterial = new THREE.MeshLambertMaterial({ color: 0x00ff00 });
-      const player = new THREE.Mesh(playerGeometry, playerMaterial);
-      player.position.set(0, 1, 0);
-      player.castShadow = true;
-      scene.add(player);
-      playerRef.current = player;
+      // Create road system
+      const roadWidth = 6;
+      const roadLength = 200;
+      const laneWidth = roadWidth / 3;
 
-      // Create ground
-      const groundGeometry = new THREE.PlaneGeometry(20, 1000);
-      const groundMaterial = new THREE.MeshLambertMaterial({
-        color: 0x90ee90,
-        transparent: true,
-        opacity: 0.8,
+      // Main road
+      const roadGeometry = new THREE.PlaneGeometry(roadWidth, roadLength);
+      const roadMaterial = new THREE.MeshLambertMaterial({
+        color: 0x333333,
       });
+      const road = new THREE.Mesh(roadGeometry, roadMaterial);
+      road.rotation.x = -Math.PI / 2;
+      road.position.set(0, 0, -roadLength / 2);
+      road.receiveShadow = true;
+      scene.add(road);
+
+      // Lane dividers (yellow lines)
+      for (let i = 0; i < roadLength; i += 2) {
+        const dividerGeometry = new THREE.BoxGeometry(0.1, 0.1, 1);
+        const dividerMaterial = new THREE.MeshLambertMaterial({
+          color: 0xffff00,
+        });
+        const divider = new THREE.Mesh(dividerGeometry, dividerMaterial);
+        divider.position.set(0, 0.01, -roadLength / 2 + i);
+        scene.add(divider);
+      }
+
+      // Lane lines (white lines)
+      for (let lane = -1; lane <= 1; lane++) {
+        const x = lane * laneWidth;
+        for (let i = 0; i < roadLength; i += 2) {
+          const lineGeometry = new THREE.BoxGeometry(0.05, 0.01, 1);
+          const lineMaterial = new THREE.MeshLambertMaterial({
+            color: 0xffffff,
+          });
+          const line = new THREE.Mesh(lineGeometry, lineMaterial);
+          line.position.set(x, 0.01, -roadLength / 2 + i);
+          scene.add(line);
+        }
+      }
+
+      // Ground around road
+      const groundGeometry = new THREE.PlaneGeometry(50, roadLength);
+      const groundMaterial = new THREE.MeshLambertMaterial({ color: 0x90ee90 });
       const ground = new THREE.Mesh(groundGeometry, groundMaterial);
       ground.rotation.x = -Math.PI / 2;
-      ground.position.y = 0;
+      ground.position.set(0, -0.01, -roadLength / 2);
       ground.receiveShadow = true;
       scene.add(ground);
 
-      // Create road markings
-      for (let i = 0; i < 100; i++) {
-        const lineGeometry = new THREE.PlaneGeometry(0.2, 2);
-        const lineMaterial = new THREE.MeshLambertMaterial({ color: 0xffffff });
-        const line = new THREE.Mesh(lineGeometry, lineMaterial);
-        line.rotation.x = -Math.PI / 2;
-        line.position.set(0, 0.01, -i * 10);
-        scene.add(line);
-      }
-
-      // Create obstacles
-      createObstacles();
-
-      // Create coins
-      createCoins();
-
-      // Create environment objects
-      createEnvironment();
+      // Create player (character)
+      const playerGeometry = new THREE.CapsuleGeometry(0.3, 0.8, 4, 8);
+      const playerMaterial = new THREE.MeshLambertMaterial({
+        color: 0xff6b6b,
+      });
+      const player = new THREE.Mesh(playerGeometry, playerMaterial);
+      player.position.set(0, 0.5, 0);
+      player.castShadow = true;
+      scene.add(player);
+      playerRef.current = player;
 
       return scene;
     }, []);
@@ -196,9 +216,18 @@ const GameRenderer3D = forwardRef<GameRenderer3DRef, GameRenderer3DProps>(
 
       // Create obstacle types
       const obstacleTypes = [
-        { geometry: new THREE.BoxGeometry(1, 2, 1), color: 0xff0000 }, // Red box
-        { geometry: new THREE.ConeGeometry(0.8, 2, 6), color: 0xff6600 }, // Orange cone
-        { geometry: new THREE.CylinderGeometry(0.5, 0.5, 2), color: 0x800080 }, // Purple cylinder
+        {
+          geometry: new THREE.BoxGeometry(1, 2, 1),
+          color: 0xff0000,
+        }, // Red barrier
+        {
+          geometry: new THREE.ConeGeometry(0.8, 2, 6),
+          color: 0xff6600,
+        }, // Orange cone
+        {
+          geometry: new THREE.CylinderGeometry(0.5, 0.5, 2),
+          color: 0x800080,
+        }, // Purple cylinder
       ];
 
       // Create obstacles
@@ -210,7 +239,7 @@ const GameRenderer3D = forwardRef<GameRenderer3DRef, GameRenderer3DProps>(
 
         const lane = Math.floor(Math.random() * 3) - 1; // -1, 0, 1
         obstacle.position.set(
-          lane * 3, // Lane position
+          lane * 2, // Lane position (-2, 0, 2)
           1,
           -i * 15 - 30 // Distance along Z
         );
@@ -242,7 +271,7 @@ const GameRenderer3D = forwardRef<GameRenderer3DRef, GameRenderer3DProps>(
 
         const lane = Math.floor(Math.random() * 3) - 1; // -1, 0, 1
         coin.position.set(
-          lane * 3, // Lane position
+          lane * 2, // Lane position (-2, 0, 2)
           2,
           -i * 8 - 20 // Distance along Z
         );
@@ -326,9 +355,28 @@ const GameRenderer3D = forwardRef<GameRenderer3DRef, GameRenderer3DProps>(
         lastTimeRef.current = currentTime;
 
         if (!gameState.isPaused && gameState.isRunning) {
+          // Move road forward
+          const roadSpeed = gameSpeedRef.current * deltaTime;
+          sceneRef.current.children.forEach((child) => {
+            // Move road elements
+            if (
+              child.material &&
+              (child.material.color.getHex() === 0x333333 || // Road
+                child.material.color.getHex() === 0xffff00 || // Yellow dividers
+                child.material.color.getHex() === 0xffffff) // White lines
+            ) {
+              child.position.z += roadSpeed;
+
+              // Reset position when road goes too far
+              if (child.position.z > 100) {
+                child.position.z = -100;
+              }
+            }
+          });
+
           // Update player position based on lane
           if (playerRef.current) {
-            const targetX = playerLaneRef.current * 3;
+            const targetX = playerLaneRef.current * 2; // 3 lanes: -2, 0, 2
             playerRef.current.position.x +=
               (targetX - playerRef.current.position.x) * 0.1;
           }
