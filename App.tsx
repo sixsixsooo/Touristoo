@@ -4,15 +4,6 @@ import { StatusBar } from "expo-status-bar";
 import { store } from "@/store";
 import AppNavigator from "@/navigation/AppNavigator";
 import storageService from "@/services/storage";
-import { adsService } from "@/services/adsService";
-
-// Конфигурация рекламы
-const AD_CONFIG = {
-  bannerAdUnitId: "your-banner-ad-unit-id",
-  interstitialAdUnitId: "your-interstitial-ad-unit-id",
-  rewardedAdUnitId: "your-rewarded-ad-unit-id",
-  isEnabled: __DEV__ ? false : true, // Отключаем рекламу в режиме разработки
-};
 
 export default function App() {
   useEffect(() => {
@@ -24,12 +15,9 @@ export default function App() {
       // Инициализируем локальное хранилище
       await storageService.initialize();
 
-      // Инициализируем сервис рекламы
-      await adsService.initialize(AD_CONFIG);
-
-      console.log("App initialized successfully");
+      console.log("Приложение успешно инициализировано");
     } catch (error) {
-      console.error("Failed to initialize app:", error);
+      console.error("Ошибка инициализации приложения:", error);
     }
   };
 
