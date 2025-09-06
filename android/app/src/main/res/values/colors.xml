@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="primary_blue">#4A90E2</color>
+    <color name="primary_purple">#7B68EE</color>
+    <color name="accent_gold">#FFD700</color>
+    
+    <!-- Background Colors -->
+    <color name="background_dark">#1A1A2E</color>
+    <color name="background_medium">#16213E</color>
+    <color name="background_light">#0F0F23</color>
+    
+    <!-- Surface Colors -->
+    <color name="surface_dark">#1A1A2E</color>
+    <color name="surface_medium">#16213E</color>
+    
+    <!-- Text Colors -->
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#B0B0B0</color>
+    <color name="text_disabled">#666666</color>
+    
+    <!-- Game Colors -->
+    <color name="coin_gold">#FFD700</color>
+    <color name="obstacle_red">#E74C3C</color>
+    <color name="powerup_green">#2ECC71</color>
+    <color name="road_dark">#2C2C2C</color>
+    <color name="grass_green">#228B22</color>
+    
+    <!-- Status Colors -->
+    <color name="success_green">#2ECC71</color>
+    <color name="warning_orange">#F39C12</color>
+    <color name="error_red">#E74C3C</color>
+    
+    <!-- Notification Colors -->
+    <color name="notification_color">#4A90E2</color>
+    
+    <!-- Transparent -->
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent">#80000000</color>
+</resources>

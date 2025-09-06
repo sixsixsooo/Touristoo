@@ -1,204 +1,252 @@
 # Touristoo Runner
 
-Мобильная игра-раннер с 3D графикой, созданная с использованием React Native (Expo) и three.js.
+A 3D endless runner game built with Flutter for RuStore, featuring Yandex Cloud integration and YooKassa payments.
 
-## 🎮 Особенности
+## Features
 
-- **3D графика** - Использование three.js для создания красивой 3D сцены
-- **Кроссплатформенность** - Работает на iOS и Android
-- **Офлайн режим** - Локальное сохранение прогресса с синхронизацией
-- **Рейтинговая система** - Глобальные таблицы лидеров
-- **Магазин** - Покупка скинов и бустеров
-- **Монетизация** - Интеграция с Yandex Ads SDK
-- **Гостевой режим** - Возможность играть без регистрации
+- 🎮 **3D Graphics**: Immersive 3D gameplay with smooth animations
+- 🏃 **Endless Runner**: Procedurally generated obstacles and power-ups
+- 🏆 **Leaderboards**: Compete with players worldwide
+- 🛍️ **Shop System**: Unlock new skins and purchase coin packs
+- 💰 **YooKassa Integration**: Secure payment processing
+- ☁️ **Yandex Cloud**: Backend services and analytics
+- 📱 **RuStore Ready**: Optimized for Russian app store
+- 🎵 **Audio System**: Dynamic music and sound effects
+- 📊 **Analytics**: Comprehensive game analytics
 
-## 🛠 Технологический стек
+## Tech Stack
 
-### Клиент (React Native)
+- **Frontend**: Flutter 3.10+
+- **3D Graphics**: Custom 3D rendering with Flutter
+- **State Management**: Riverpod
+- **Navigation**: GoRouter
+- **Backend**: Yandex Cloud Functions
+- **Database**: PostgreSQL
+- **Payments**: YooKassa
+- **Analytics**: Yandex AppMetrica, Firebase Analytics
+- **Storage**: Hive, SharedPreferences
 
-- **React Native (Expo)** - Основной фреймворк
-- **TypeScript** - Типизация
-- **three.js + expo-three** - 3D графика
-- **React Navigation** - Навигация
-- **Redux Toolkit** - Управление состоянием
-- **SQLite** - Локальное хранилище
-- **Axios** - HTTP запросы
-- **Yandex Ads SDK** - Монетизация
-
-### Бэкенд (Node.js)
-
-- **Express.js** - Web сервер
-- **PostgreSQL** - База данных
-- **JWT** - Аутентификация
-- **Yandex Cloud** - Облачная инфраструктура
-- **Object Storage** - Хранение ассетов
-
-## 📁 Структура проекта
+## Project Structure
 
 ```
-Touristoo/
-├── src/                          # Исходный код приложения
-│   ├── components/               # React компоненты
-│   │   └── GameRenderer.tsx     # 3D игровой движок
-│   ├── screens/                  # Экраны приложения
-│   │   ├── HomeScreen.tsx       # Главный экран
-│   │   ├── GameScreen.tsx       # Игровой экран
-│   │   ├── ShopScreen.tsx       # Магазин
-│   │   ├── LeaderboardScreen.tsx # Рейтинг
-│   │   ├── SettingsScreen.tsx   # Настройки
-│   │   └── ProfileScreen.tsx    # Профиль
-│   ├── navigation/               # Навигация
-│   │   └── AppNavigator.tsx     # Главный навигатор
-│   ├── store/                    # Redux store
-│   │   ├── index.ts             # Конфигурация store
-│   │   └── slices/              # Redux слайсы
-│   ├── services/                 # Сервисы
-│   │   ├── api.ts               # API клиент
-│   │   ├── storage.ts           # Локальное хранилище
-│   │   └── adsService.ts        # Реклама
-│   └── types/                    # TypeScript типы
-├── backend/                      # Бэкенд API
-│   ├── src/
-│   │   ├── routes/              # API маршруты
-│   │   ├── config/              # Конфигурация
-│   │   └── index.js             # Точка входа
-│   └── package.json
-├── assets/                       # Статические ресурсы
-├── App.tsx                       # Главный компонент
-├── package.json                  # Зависимости клиента
-└── README.md                     # Документация
+lib/
+├── core/
+│   ├── config/          # App configuration
+│   ├── models/          # Data models
+│   ├── navigation/      # App routing
+│   ├── providers/       # State management
+│   ├── services/        # Core services
+│   └── theme/           # App theming
+├── features/
+│   ├── auth/            # Authentication
+│   ├── game/            # Game logic and 3D rendering
+│   ├── home/            # Home screen
+│   ├── leaderboard/     # Leaderboards
+│   ├── profile/         # User profile
+│   ├── settings/        # App settings
+│   └── shop/            # In-app purchases
+└── main.dart           # App entry point
 ```
 
-## 🚀 Быстрый старт
+## Getting Started
 
-### Установка зависимостей
+### Prerequisites
 
-```bash
-# Установка зависимостей клиента
-npm install
+- Flutter 3.10 or higher
+- Dart 3.0 or higher
+- Android Studio / VS Code
+- Android SDK 21+
+- iOS 12.0+ (for iOS development)
 
-# Установка зависимостей бэкенда
-cd backend
-npm install
-```
+### Installation
 
-### Настройка окружения
+1. **Clone the repository**
 
-1. Скопируйте `backend/env.example` в `backend/.env`
-2. Настройте переменные окружения для подключения к Yandex Cloud
-3. Создайте базу данных PostgreSQL в Yandex Cloud
+   ```bash
+   git clone https://github.com/yourusername/touristoo-runner.git
+   cd touristoo-runner
+   ```
 
-### Запуск приложения
+2. **Install dependencies**
 
-```bash
-# Запуск клиента
-npm start
+   ```bash
+   flutter pub get
+   ```
 
-# Запуск бэкенда (в отдельном терминале)
-cd backend
-npm run dev
-```
+3. **Generate code**
 
-## 🔧 Настройка Yandex Cloud
+   ```bash
+   flutter packages pub run build_runner build
+   ```
 
-### 1. Managed PostgreSQL
+4. **Configure environment**
 
-- Создайте кластер PostgreSQL в Yandex Cloud
-- Настройте пользователя и пароль
-- Обновите переменные окружения в `backend/.env`
+   - Copy `lib/core/config/app_config.dart.example` to `lib/core/config/app_config.dart`
+   - Update API keys and configuration values
 
-### 2. Object Storage
+5. **Run the app**
+   ```bash
+   flutter run
+   ```
 
-- Создайте бакет для хранения 3D моделей и текстур
-- Настройте CORS для доступа с мобильного приложения
-- Обновите конфигурацию в `backend/env.example`
+## Configuration
 
-### 3. Cloud Functions
+### Yandex Cloud Setup
 
-- Создайте функцию для обработки API запросов
-- Настройте триггеры и маршруты
-- Деплойте код бэкенда
+1. Create a Yandex Cloud account
+2. Set up Cloud Functions
+3. Configure API keys in `app_config.dart`
+4. Set up database connection
 
-### 4. Yandex Ads SDK
+### YooKassa Setup
 
-- Зарегистрируйтесь в Yandex Advertising
-- Получите Ad Unit ID для баннеров и видеорекламы
-- Обновите конфигурацию в `src/services/adsService.ts`
+1. Register with YooKassa
+2. Get your Shop ID and Secret Key
+3. Configure payment settings in `app_config.dart`
 
-## 📱 Сборка для продакшена
+### RuStore Preparation
 
-### Android
+1. Register as a developer on RuStore
+2. Create app listing
+3. Configure app signing
+4. Upload APK/AAB files
 
-```bash
-# Создание APK
-eas build --platform android
+## Game Features
 
-# Создание AAB для Google Play
-eas build --platform android --profile production
-```
+### 3D Graphics
 
-### iOS
+- Custom 3D rendering engine
+- Smooth 60 FPS gameplay
+- Dynamic lighting and shadows
+- Particle effects
 
-```bash
-# Создание IPA для App Store
-eas build --platform ios --profile production
-```
+### Gameplay
 
-## 🎯 Игровая механика
+- Lane-based running mechanics
+- Obstacle avoidance (jump, slide, duck)
+- Power-up collection
+- Progressive difficulty
+- Score and distance tracking
 
-### Основной геймплей
+### Progression System
 
-- Бесконечный бег с препятствиями
-- Сбор монет для покупки скинов
-- Система здоровья и жизней
-- Прогрессивное увеличение сложности
+- Player levels and experience
+- Unlockable skins and characters
+- Achievement system
+- Daily challenges
 
-### Система прогресса
+### Social Features
 
-- Локальное сохранение в SQLite
-- Синхронизация с облаком при наличии интернета
-- Гостевой режим без регистрации
-- Поддержка аккаунтов через Yandex ID
+- Global leaderboards
+- Score sharing
+- Player profiles
+- Friend system
 
-### Монетизация
+## API Endpoints
 
-- Баннерная реклама в меню
-- Межстраничная реклама между играми
-- Реклама за награду (монеты)
-- Подготовка к системе покупок
+### Authentication
 
-## 🔮 Планы развития
+- `POST /api/auth/login` - User login
+- `POST /api/auth/register` - User registration
+- `POST /api/auth/refresh` - Token refresh
 
-### Ближайшие обновления
+### Game Data
 
-- [ ] Интеграция с Yandex ID
-- [ ] Система достижений
-- [ ] Мультиплеер режимы
-- [ ] Новые уровни и препятствия
+- `GET /api/leaderboard` - Get leaderboard
+- `POST /api/game/save` - Save game progress
+- `GET /api/player/profile` - Get player profile
 
-### Долгосрочные цели
+### Shop
 
-- [ ] Веб-версия на Next.js
-- [ ] Система покупок через Yandex Pay
-- [ ] Социальные функции
-- [ ] Турниры и события
+- `GET /api/shop/skins` - Get available skins
+- `POST /api/shop/purchase` - Process purchase
+- `GET /api/shop/coin-packs` - Get coin packs
 
-## 🤝 Вклад в проект
+## Building for Production
 
-1. Форкните репозиторий
-2. Создайте ветку для новой функции (`git checkout -b feature/amazing-feature`)
-3. Зафиксируйте изменения (`git commit -m 'Add amazing feature'`)
-4. Отправьте в ветку (`git push origin feature/amazing-feature`)
-5. Откройте Pull Request
+### Android (RuStore)
 
-## 📄 Лицензия
+1. **Generate signed APK**
 
-Этот проект лицензирован под MIT License - см. файл [LICENSE](LICENSE) для деталей.
+   ```bash
+   flutter build apk --release
+   ```
 
-## 📞 Поддержка
+2. **Generate App Bundle**
 
-Если у вас есть вопросы или предложения, создайте [Issue](https://github.com/your-username/touristoo-runner/issues) в репозитории.
+   ```bash
+   flutter build appbundle --release
+   ```
+
+3. **Upload to RuStore**
+   - Use RuStore Developer Console
+   - Upload AAB file
+   - Configure store listing
+
+### iOS (App Store)
+
+1. **Build for iOS**
+
+   ```bash
+   flutter build ios --release
+   ```
+
+2. **Archive in Xcode**
+   - Open `ios/Runner.xcworkspace`
+   - Archive and upload to App Store Connect
+
+## Performance Optimization
+
+- **3D Rendering**: Optimized for 60 FPS on mid-range devices
+- **Memory Management**: Efficient object pooling
+- **Asset Optimization**: Compressed textures and models
+- **Network**: Cached API responses
+- **Battery**: Optimized rendering loops
+
+## Analytics
+
+### Yandex AppMetrica
+
+- User behavior tracking
+- Custom events
+- Crash reporting
+- Performance monitoring
+
+### Firebase Analytics
+
+- Game progression tracking
+- In-app purchase analytics
+- User engagement metrics
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests if applicable
+5. Submit a pull request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Support
+
+For support and questions:
+
+- Create an issue on GitHub
+- Contact: support@touristoo.run
+- Documentation: https://docs.touristoo.run
+
+## Roadmap
+
+- [ ] Multiplayer mode
+- [ ] New game modes
+- [ ] AR features
+- [ ] Social features
+- [ ] More 3D environments
+- [ ] Custom character creation
 
 ---
 
-**Touristoo Runner** - создано с ❤️ для мобильных геймеров
+**Touristoo Runner** - Where every step is an adventure! 🏃‍♂️✨
